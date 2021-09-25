@@ -16,62 +16,91 @@ padding: 0;
 box-sizing:border-box;
 font-family:'ALEGREYA',sans-serif
 }
-nav{
-    width: 100%;
-    height: 8vh;
-    background-color:black;
-    color:white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   
-}
-nav .logo
-{
-    width: 50%; text-align:center; 
-}
-nav .menu{
-    width:40%;  display: flex; justify-content:space-around;
+.header {
+  overflow: hidden;
+  background-color:black;
+  margin-top:30px;
+  padding: 0px 0px;
 }
 
-nav .menu a{
-    width:25%;text-decoration: none;color: white;font-weight: bold;font-size: 30px;
+/* Style the header links */
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 30px;
+  text-decoration:inherit;
+  font-family:fantasy;
+  font-size: 20px;
+  line-height: 25px;
+  border-radius: 4px;
 }
-nav .menu a:hover
-{
-  color:#bbb;
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 45px;
+  font-weight: bold;
 }
-    #inputbtn:hover{cursor:pointer;}
-nav .menu a:active {
+
+/* Change the background color on mouse-over */
+.header a:hover {
+   background-color: orange;  
+   color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
   background-color: purple;
   color: white;
 }
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+
+footer {
+  background-color: black;
+  text-align: center;
+  color: white;
+  z-index: 22;
+  left: 0;
+  width: 100%;
+  height: 7%;
+  bottom: 0;
+  position: fixed;
+  
+}
+
+
+
     
   </style>
   
 
-  <body style=" background-image:url('bgimage.jpg');background-repeat: no-repeat;background-size: cover;">
-    <header>
-
-      <nav>
-        <img src="bg.jpg" style= " margin-left: 0px; width:70px; height: 55px;">
-         
-        <h1 style="font-size: 35px; margin-left:-390px;"><i><b>asset@yourservice</b></i></h1></html></div>
-         
-
-        
-              <div class="menu">
-                <a href="index.jsp">HOME</a>
-              <a href="AboutUs.jsp">ABOUT</a>
-            
-              
-              </div>
-            </nav>
-			
-    <div class="container-fluid" style="margin-top:60px;margin-bottom:60px;color:#34495E">
+  <body style=" background-image:url('images/bg1.jpg');background-repeat: no-repeat;background-size: cover;">
+    <div class="header">
+  		<a href="#default" class="logo"></a>
+  		<div class="header-right">
+    		<a class="active">Register</a>
+    		<a  href="index.jsp" >Home</a>
+    		<a  href="AboutUs.jsp">About</a>
+  		</div>
+	</div>
+	
+	<div class="logo">
+		<a href="#"><img src="images/log.jpg" style="width:6%;margin-left:-5px;
+		margin-top:-80px;margin-bottom:15px;height:80px;  "/></a>
+		<h1 style="color:white; font-size:40px;font-family:'ALEGREYA',sans-serif;
+			margin-left:110px;margin-top:-70px;">asset@yourservice</h1>
+	</div>
+	
+	
+    <div class="container-fluid" style="margin-top:-30px;margin-bottom:60px;color:#34495E">
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-4" style="margin-left:380px; margin-top:55px">
+        <div class="col-md-4" style="margin-left:500px; margin-top:55px">
           <center>
 		  <div class="card">
             
@@ -107,7 +136,7 @@ nav .menu a:active {
 				  
                 </div>
 				
-                <center><input type="submit" id="inputbtn" name="login_submit" value="SIGN UP" class="btn btn-primary"></center>
+                <center><input type="submit" id="inputbtn" name="login_submit" value="SIGN UP" class="btn btn-primary">
               </form>
             
             </div>
@@ -121,4 +150,19 @@ nav .menu a:active {
 
   
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  
+  
+  <footer>
+       <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            
+            <p style="font-weight:bold; margin-right:-450px;font-color:red;margin-top:20px;"class="copyright-text">Copyright &copy; 2020 All Rights Reserved by assets@yourservice pvt. ltd.
+           
+            </p>
+          </div>
+	</footer>
+  
+  
+  
   </body>

@@ -54,12 +54,12 @@
 		<url-pattern>/returnasset</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>ByDateServlet</servlet-name>
-		<servlet-class>com.hsbc.controller.ByDateServlet</servlet-class>
+		<servlet-name>ByIdServlet</servlet-name>
+		<servlet-class>com.hsbc.controller.ByIdServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ByDateServlet</servlet-name>
-		<url-pattern>/bydate</url-pattern>
+		<servlet-name>ByIdServlet</servlet-name>
+		<url-pattern>/byId</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ByCategoryServlet</servlet-name>

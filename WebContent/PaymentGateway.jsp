@@ -24,7 +24,7 @@
   background-color: #faf1f0;
 }
 body {
-  background-image: url('12.jpeg');
+  background-image: url('images/12.jpeg');
   background-size: cover;
   background-attachment: fixed;
 }

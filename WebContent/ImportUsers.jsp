@@ -1,26 +1,22 @@
+<%@page import="com.hsbc.pojo.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-	
-	<%@page import="com.hsbc.pojo.User"%>
+    pageEncoding="ISO-8859-1"%>
+<!--a set of assets/WebContent/WEB-INF/UserHomepage.html-->
 
-<%
+<%-- <%
    
 	User curruser=(User)session.getAttribute("currentUser");	
 	String username=(String)curruser.getName();
 	String email=(String) curruser.getEmail();
-%>
+%> --%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Messages</title>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Home</title>
 <style>
-/* Split the screen in half */
-body {
-	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
-}
+
 
 .header {
   overflow: hidden;
@@ -80,6 +76,11 @@ footer {
 }
 
 
+	/* Split the screen in half */
+body {
+  margin: 0;
+  font-family: ALEGREYA, Helvetica, sans-serif;
+}
 .split {
 margin-top:5px;
   margin-left:20px;
@@ -107,78 +108,68 @@ margin-top:5px;
   position: fixed;
 }
 
+.lefttable{
+	margin-top:40px;
+	margin-left:95px;
+	margin-bottom:20px;
+	margin-right:40px;
+	position:left;
+	table-layout: justify;
+	color:#0F0E0E;
+
+
+}
+td {
+
+color:black;
+padding-left: 80px; 
+padding-top: 5px;
+padding-bottom: 5px;
+padding-right: 60px;
+}
 
 /* Control the right side */
 .right {
-	right: 0;
-	background-color: #f4f3f3;
-
+  right: 0;
+  background-color: #f4f3f3;
 }
 
-
 .right::after {
-	content: "";
-	background-image: url("images/el.jpg");
-	background-size: 100% 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	opacity: 0.50;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	position: absolute;
-	z-index: -1;
+  content: "";
+  background-image: url("images/new1.jpg");
+  background-size: 100% 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.50;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }
 
 /* If you want the content centered horizontally and vertically */
 .centered {
-	position: relative;
-	top: 25%;
-	left: 35%;
-	transform: translate(5%, -50%);
-	text-align: left;
+  position: relative;
+  top: 20%;
+  left: 40%;
+  transform: translate(5%, -50%);
+  text-align: left;
 }
 
-.centered1 {
-	position: relative;
-	top: 15%;
-	left: 15%;
-	transform: translate(5%, -50%);
-	text-align: left;
-}
 /* Style the image inside the centered container, if needed */
 .centered img {
-	width: 150px;
-	border-radius: 65%;
+  width: 150px;
+  border-radius: 70%;
 }
-
-td {
-	padding-left: 80px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-right: 60px;
-}
-
-ol {
-	padding-left: 120px;
-}
-
-
-
-
-
-
-
 
 
 </style>
-
-
 </head>
 <body>
 
-<%
+<%--
 response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 response.setHeader("Pragma","no-cache");
 response.setHeader("Expires","0");
@@ -186,17 +177,17 @@ response.setHeader("Expires","0");
 	   response.sendRedirect("index.jsp");
    }
 
-%>
+--%>
 
 
 
-	<div class="header">
+<div class="header">
   		<a href="#default" class="logo"></a>
   		<div class="header-right">
     		<a >Admin</a>
     		<a  href="AddAsset.jsp" >Add Assets</a>
-    		<a class="active" href="overdueAssets.jsp">Over-due Assets</a>
-    		<a  href="ImportUsers.jsp">Import Users</a>
+    		<a  href="overdueAssets.jsp">Over-due Assets</a>
+    		<a class="active" href="ImportUsers.jsp">Import Users</a>
     		<a href="ViewReport.jsp">View Reports</a>
     		<a href="index.jsp">Logout</a>
   		</div>
@@ -208,7 +199,8 @@ response.setHeader("Expires","0");
 		<h1 style="color:white; font-size:40px;font-family:'ALEGREYA',sans-serif;
 			margin-left:110px;margin-top:-80px;">asset@yourservice</h1>
 	</div>
-	<div class="split left">
+
+<div class="split left">
   <div class="centered">
     <img src="images/user.jpg" alt="USER" style="left: 60%; width:100px; height:100px; margin-left:-50px;margin-top:70px";">
   </div>
@@ -219,43 +211,47 @@ response.setHeader("Expires","0");
   	<tr>
   		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%=username%></td>
+  		<td><%-- <%=username%> --%></td>
   	</tr>
   	
  	<tr>
   		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">EMAIL</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%=email%></td>
+  		<td><%-- <%=email%> --%></td>
   	</tr>
     </table>
 	</div>
 </div>
-	<div class="split right">
-		<br> <br> <br> <br> <br>
-		<h2 style="font-family:monospace;font-size:30px; " align="center">OVER DUE TRANSACTION MANAGEMENT</h2>
-		<div class= "button" >
-		<table align="center">
-		<center>
-		
-	
-		
-		<br><br><b><input type="button" value="CLICK HERE TO VIEW DETAILS BY ID"
-				onclick="location.href = 'searchbyId.jsp';" style="font-size:20px;color:white;background-color:green; width:50%; border-radius: 12px; height:60px;" /></b>
-				
-		
-		<br><br><b><input type="button" value="CLICK HERE TO VIEW DETAILS BY CATEGORY"
-				onclick="location.href = 'searchbycategory.jsp';" style="font-size:20px;color:white;background-color:red; width:50%; border-radius: 12px; height:60px;" /></b>
-			
-		
-		<br><br><b><input type="button" value="CLICK HERE TO SEND MESSAGE"
-				onclick="location.href = 'Sendmessage.jsp';" style="font-size:20px;color:white;background-color:blue; width:50%; border-radius: 12px; height:60px;" /></b>
-				</center>
-	
-			
-		</table>
-		</div>
 
-		<footer>
+<div class="split right">
+	<br><br><br><br><br>
+    <h2 style="font-family:monospace;font-size:30px; " align="center">IMPORT USERS</h2><br><br><br>
+	<form method="post" onclick="validate()" action="importuser">
+
+			<h2 style=margin-left:50px; align="center"> Select a file to upload:</h2>
+        	<form enctype="multipart/form-data" method="post" align="center">
+			<input type="file" name="jsonFile" style="margin-top:30px;margin-left:400px;">
+			<input type="submit" value="Upload File" style="margin-left:450px;margin-top:30px;">
+			</form>
+			<br> <br>
+			</form>
+			
+			
+			<%-- <%
+			String str = (String)session.getAttribute("result");
+			pageContext.setAttribute("str", str);
+			%> --%>
+			
+			<h3>${str }</h3>
+			<br> <br>
+		<form align="center">
+			<input type="button" value="Back to Home" style=margin-left:50px;
+				onclick="location.href = 'AdminHome.jsp';" />
+		</form>
+
+</div>
+
+<footer>
        <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
@@ -265,5 +261,6 @@ response.setHeader("Expires","0");
             </p>
           </div>
 	</footer>
+
 </body>
 </html>

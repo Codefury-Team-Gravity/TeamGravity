@@ -31,8 +31,10 @@ public class AddCategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Category category = new Category();
+		System.out.println(request.getParameter("lendingperiod"));
 		
-		category.setAssetType(request.getParameter("categoryname"));//ui name
+		category.setAssetType(request.getParameter("categoryname"));
+	
 		category.setLendingPeriod(Integer.parseInt(request.getParameter("lendingperiod")));
 		category.setLateFee(Integer.parseInt(request.getParameter("fine")));
 		category.setbannedDaysCount(Integer.parseInt(request.getParameter("banperiod")));

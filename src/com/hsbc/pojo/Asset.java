@@ -17,6 +17,9 @@ public class Asset {
 	}
 
 	// constructor with parameters
+	public Asset(int assetId) {
+		this.assetId=assetId;
+	}
 	public Asset(int assetId, String name, String assetType, String description, Date dateOfAdded,
 			boolean isAvailable) {
 		super();

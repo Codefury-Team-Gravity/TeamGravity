@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.hsbc.pojo.OverdueDate"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.hsbc.pojo.User"%>
 
+<%
+   
+	User curruser=(User)session.getAttribute("currentUser");	
+	String username=(String)curruser.getName();
+	String email=(String) curruser.getEmail();
+%>
 
 
 <!DOCTYPE html>
@@ -357,6 +367,19 @@ ol {
 </head>
 <body>
 
+<%
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+response.setHeader("Pragma","no-cache");
+response.setHeader("Expires","0");
+   if(session.getAttribute("userid")==null){
+	   response.sendRedirect("index.jsp");
+   }
+
+%>
+
+
+
+
 	<div class="topnav">
 	 <a href="logout" class="logoutbtn"><b>Logout<b></a> 
   <a  href="AddNewAsset.jsp"><b>Add Assets</b></a>
@@ -383,7 +406,7 @@ ol {
 							<li>Userame</li>
 						</ul></td>
 					<td>:</td>
-					<td><></td>
+					<td><%=username%></td>
 				</tr>
 
 				<tr>
@@ -391,7 +414,7 @@ ol {
 							<li>Email Id</li>
 						</ul></td>
 					<td>:</td>
-					<td><></td>
+					<td><%=email%></td>
 				</tr>
 				
 
@@ -417,6 +440,14 @@ ol {
 			<br>
 		</form>
 <br> <br>
+
+<%
+			ArrayList<OverdueDate> list1 = (ArrayList<OverdueDate>) session.getAttribute("list");
+		pageContext.setAttribute("list1", list1);
+//		System.out.println("from jsp " + list1);
+		%>
+
+
 
 		
 		<table border=5 align="center">

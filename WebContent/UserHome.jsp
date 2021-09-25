@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%@ page import="com.hsbc.pojo.User" %>
+<%
+   
+	User curruser=(User)session.getAttribute("currentUser");	
+	String userName=(String)curruser.getName();
+	String email=(String) curruser.getEmail();
+	String telephone=(String)curruser.getPhoneNumber();
+	String username=(String)curruser.getUserName();
+	int userId= curruser.getUserId();
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,16 +84,10 @@ padding-right: 60px;
   
 }
 
-
-
-
-
-
 /* Control the left side */
 .left {
   left: 0;
   background-color: pink;
-  background-image: url("spacedot.gif");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: white;
@@ -117,6 +124,15 @@ footer {
 </style>
 
 <body>
+<%
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+response.setHeader("Pragma","no-cache");
+response.setHeader("Expires","0");
+   if(session.getAttribute("userid")==null){
+	   response.sendRedirect("index.jsp");
+   }
+
+%>
 
 	<div class="header">
   		<a href="#default" class="logo"></a>
@@ -148,31 +164,33 @@ footer {
 	
 	
 	<table class="left" align="left">
-    <tr>
-  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">USER NAME</li></ul></td>
+	<tr>
+  		<td><ul><li style="font-size:20px; font-family:fantasy;color:black;">USER ID</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%=userId%></td>
   	</tr>
-  	<tr>
-  		<td><ul><li style="font-size:20px; font-family:fantasy;color:black;">EMPLOYEE ID</li></ul></td>
-  		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
-  	</tr>
+   
+  	
   	<tr>
   		<td><ul><li style="font-size:20px; font-family:fantasy;color:black;">NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%=userName%></td>
   	</tr>
   	<tr>
   		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">TELEPHONE</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%=telephone%></td>
   	</tr>
  	<tr>
   		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">E-MAIL</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
-  	</tr>         
+  		<td><%=email%></td>
+  	</tr>  
+  	<tr>
+  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">USER NAME</li></ul></td>
+  		<td style="color:black;font-size:40px;">:</td>
+  		<td><%=username%></td>
+  	</tr>        
     </table>
     
     
@@ -181,39 +199,15 @@ footer {
   <br><br><br><br><br>
     	
 </div>
-    
-    
-    
-    
-    
-    
-    
-	
-	<!--  <foo> 
-          <div class="col">
-            <p style="margin-top:400px;">
-            </p>
-          </div>
-         </foo>-->
-	
 	<footer>
        <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
             
-            <p style="font-weight:bold; font-color:red;"    class="copyright-text">Copyright &copy; 2020 All Rights Reserved by assets@yourservice pvt. ltd.
+            <p style="font-weight:bold; font-color:red;"    class="copyright-text">Copyright &copy; 2021 All Rights Reserved by assets@yourservice pvt. ltd.
            
             </p>
           </div>
 	</footer>
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </body>
 </html>

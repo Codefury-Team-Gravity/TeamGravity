@@ -1,20 +1,26 @@
+<%@page import="java.util.Date"%>
 <%@page import="com.hsbc.pojo.User"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!--a set of assets/WebContent/WEB-INF/UserHomepage.html-->
+<%@page import="java.util.*"%>
 
+<%@page import="com.hsbc.service.*"%>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@page import="java.util.ArrayList"%>
 <%
-   
-	User curruser=(User)session.getAttribute("currentUser");	
-	String username=(String)curruser.getName();
-	String email=(String) curruser.getEmail();
-%>
+	List<String> listOfAssetTypes = new ArrayList<String>();
+//System.out.println("size of array list after creating: " + size);
+CategoryService cs = CategoryServiceFactory.getCategoryServiceImplObject() ;
+listOfAssetTypes = cs.getAllCategory();//get assets under a category
+int size = listOfAssetTypes.size();
+%> 
 
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Home</title>
+	<title>Add Assets</title>
 <style>
 
 
@@ -61,8 +67,6 @@
   float: right;
 }
 
-
-
 footer {
   background-color: black;
   text-align: center;
@@ -76,7 +80,6 @@ footer {
 }
 
 
-	/* Split the screen in half */
 body {
   margin: 0;
   font-family: ALEGREYA, Helvetica, sans-serif;
@@ -91,40 +94,27 @@ margin-top:5px;
   z-index: 2;
   top: 5;
   overflow-x: hidden;
-  padding-top: 20px;
-  
-  
+  padding-top: 20px; 
 }
 
 /* Control the left side */
 .left {
   
-  background-image: url("images/Laptop.gif");
+  background-image: url("/portal_content/images/Laptop.gif");
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-size: 50% 100%;
-  
   color:yellow;
-  position: fixed;
+  position: absolute;
 }
 
-.lefttable{
-	margin-top:40px;
-	margin-left:95px;
-	margin-bottom:20px;
-	margin-right:40px;
-	position:left;
-	table-layout: justify;
-	color:#0F0E0E;
 
-
-}
 td {
 
 color:black;
 padding-left: 80px; 
 padding-top: 5px;
-padding-bottom: 5px;
+padding-bottom: 20px;
 padding-right: 60px;
 }
 
@@ -136,11 +126,11 @@ padding-right: 60px;
 
 .right::after {
   content: "";
-  background-image: url("images/new1.jpg");
-  background-size: 100% 90%;
+  background-image: url("images/addassets.jpg");
+  background-size: 50% 90%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.50;
+  opacity: 0.30;
   top: 0;
   left: 0;
   bottom: 0;
@@ -164,6 +154,30 @@ padding-right: 60px;
   border-radius: 70%;
 }
 
+.addassetbox{
+
+width:250px;
+margin-top:80px;
+}
+
+
+.addassetbutn{
+margin-left:325px;
+font-weight: bold; 
+
+}
+
+ footer {
+  background-color:black;
+  text-align: center;
+  color: white;
+  left: 0;
+  width: 100%;
+  height: 7%;
+  bottom: 0;
+  position: fixed;
+}
+
 
 </style>
 </head>
@@ -180,12 +194,11 @@ response.setHeader("Expires","0");
 %>
 
 
-
 <div class="header">
   		<a href="#default" class="logo"></a>
   		<div class="header-right">
-    		<a class="active">Admin</a>
-    		<a  href="AddAsset.jsp" >Add Assets</a>
+    		<a  href="AdminHome.jsp">Admin</a>
+    		<a  class="active" >Add Assets</a>
     		<a  href="overduetrans.jsp">Over-due Assets</a>
     		<a href="ImportUsers.jsp">Import Users</a>
     		<a href="ViewReport.jsp">View Reports</a>
@@ -194,7 +207,7 @@ response.setHeader("Expires","0");
 	</div>
 	
 	<div class="logo">
-		<a href="#"><img src="images/log.jpg" style="width:6%;margin-left:-5px;
+		<a href="#"><img src="../../images/log.jpg" style="width:6%;margin-left:-5px;
 		margin-top:-205px;margin-bottom:15px;height:84px;  "/></a>
 		<h1 style="color:white; font-size:40px;font-family:'ALEGREYA',sans-serif;
 			margin-left:110px;margin-top:-80px;">asset@yourservice</h1>
@@ -202,16 +215,26 @@ response.setHeader("Expires","0");
 
 <div class="split left">
   <div class="centered">
-    <img src="images/user.jpg" alt="USER" style="left: 60%; width:100px; height:100px; margin-left:-50px;margin-top:70px";">
+    <img src="images/user.jpg" alt="USER" style="left: 60%; width:100px; margin-top:90px; margin-left:-80px;">
   </div>
-  <br><br><br><br><br>
+  <br><br><br><br>
   <div class="left" align="left">
-  <table class="lefttable" style="font-size:28px;width:25%;">
+  <table class="lefttable" style="font-size:25px; width:30%;">
+  
+  <% User user = (User)session.getAttribute("currentUser");
+  	String name = user.getName();
+  	String email = user.getEmail();
+  	//Date lastLogin = user.getLastLoginTime();
+  	%>
+  	
+ 
+  
+  
  
   	<tr>
   		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%=username%></td>
+  		<td><%=name%></td>
   	</tr>
   	
  	<tr>
@@ -219,42 +242,73 @@ response.setHeader("Expires","0");
   		<td style="color:black;font-size:40px;">:</td>
   		<td><%=email%></td>
   	</tr>
+	
+
     </table>
 	</div>
 </div>
 
-
-<div class="split right">
-  <br><br><br><br><br>
-    <h2 align="center" style="color:#000000; font-family:monospace;  font-size:40px; margin-top:-20px;">WELCOME ADMIN</h2><br><br><br>
-    <p align="center">
-    <article style="margin-top: 5px; margin-left: 245px;">
-                        <div  class="slideshow-container">
-                    
-                            <div class="mySlides fade">
-                              <!-- <div class="numbertext">1 / 3</div> -->
-                              <img src="images/m1.jpg" style="width:60%; margin-left: 50px; height:28%;">
-                              <!-- <div class="text">Caption Text</div> -->
-                            </div>
-                       
-                            </div>
-                            <br> 
-                    </article>
-                    </p><br><br>
-                    <p style="color: black; font-size:20px;margin-left: 50px;margin-top:20px;" align="center">Making good, BETTER!</p>
+<div class="split right" style="position:absolute">
+	<br><br><br>
+    <h1 style="text-shadow: 4px 4px 2px #A0A0A0" align="center" >Add Assets</h1><br><br><br>
+   	<div class="addassetbox">
+<form method = "post" action = "addasset">
+					<table class="righttable">
+					<tr>
+					<td><b>Category</b></td>
 					
+					<td><select name="category" id="newcategory">
+								<option>Category</option>
+									
+								<%
+									for (int i = 0; i < size; i++) {
+								%>
+								<option value="<%=listOfAssetTypes.get(i)%>">
+									<%=listOfAssetTypes.get(i)%>
+								</option>
+								<%
+									}
+								%>
+						<input type="button" value="Add New Category"onclick="location.href = 'AddNewCategory.jsp';" style="font-size:15px;color:black; background-color:yellow;margin-left:9px;" />
+								
+						</select></td>	
+					</tr>
+					
+
+					<tr>
+						<td style="width: 20px; font-size: 18px;"><b>Sub-Category<b></td>
+						<td><input type="text" name="subcategory" required
+							style="height: 30px; width: 200px;"></td>
+					</tr>
+
+
+	<td required>
+
+	<tr>
+		<td style="width:20px;font-size:18px;"><b>Description<b></td>
+		<td>
+			<textarea name="description"  rows="5" cols="35" required>
+			</textarea>
+		</td>
+	</tr>
+</table>
+<br>
+<div class="addassetbutn">
+<b><input type= submit value="Add Asset" style="color:white; background-color:blue"><b>
+</div>
+</form>
 </div>
 
+</div>
 <footer>
        <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
             
-            <p style="font-weight:bold; font-color:red; margin-top:20px;"    class="copyright-text">Copyright &copy; 2021 All Rights Reserved by assets@yourservice pvt. ltd.
+            <p style="font-weight:bold; font-color:red; margin-top:20px;margin-left:150px;" class="copyright-text">Copyright &copy; 2021 All Rights Reserved by assets@yourservice pvt. ltd.
            
             </p>
           </div>
 	</footer>
-
 </body>
 </html>

@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		System.out.println(username+" "+password);
 		// AuthenticationDao authDao = new AuthenticationDao();
 		LoginService loginService = LoginServiceFactory.getLoginServiceObject();
 		if(loginService.credentialCheck(username, password)) {
@@ -28,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 			User currentUser=null;
 			try {
 				currentUser = UserServiceFactory.getUserServiceObject().getUserByUserName(username);
+				System.out.println(currentUser);
 			} catch (NoUserFoundException e1) {
 				// TODO Auto-generated catch block
 				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");//Login.jsp PAge or USerHomepage.jsp

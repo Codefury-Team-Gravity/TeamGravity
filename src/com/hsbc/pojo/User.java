@@ -12,8 +12,11 @@ public class User {
 	public User() {
 		super();
 	}
-
+	
 	//constructor with parameters
+	public User(int userId) {
+		this.userId=userId;
+	}
 	public User( String name, String role, String phoneNumber, String email, String userName) {
 		super();
 		

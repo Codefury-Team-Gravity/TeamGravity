@@ -168,7 +168,8 @@ public class AssetDaoImpl implements AssetDao {
 	//return list of all available assets in storage
 	@Override
 	public List<Asset> getAllAvailableAsset()
-	{
+	{	
+		System.out.println("Entered");
 		List<Asset> assets=new ArrayList<Asset>();
 		try {
 			ResultSet rs=allAsset.executeQuery();
@@ -176,6 +177,7 @@ public class AssetDaoImpl implements AssetDao {
 			{
 				assets.add(new Asset(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getBoolean(6)));
 			}
+			System.out.println("InDao Layer:"+assets);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

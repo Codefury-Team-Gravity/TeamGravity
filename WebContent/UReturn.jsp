@@ -1,5 +1,32 @@
+<%@page import="java.util.Date"%>
+<%@page import="com.hsbc.pojo.User"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.hsbc.pojo.*"%>
+
+<%@page import="java.util.List"%>
+<%@page import="com.hsbc.dao.AssetDao"%>
+<%@page import="com.hsbc.service.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+	
+	User curruser=(User)session.getAttribute("currentUser");	
+	String username=(String)curruser.getUserName();
+	int userid=curruser.getUserId();
+	String name=(String)curruser.getName();
+	String email=(String) curruser.getEmail();
+	String telephone=(String)curruser.getPhoneNumber();
+
+%>  
+<%
+	List<Borrow> borrowedAssets = new ArrayList<Borrow>();
+	pageContext.setAttribute("assets" , borrowedAssets);
+	//System.out.println("size of array list after creating: " + size);
+	BorrowService bs=BorrowServiceFactory.getBorrowServiceImplObject();
+	borrowedAssets = bs.getBorrowDetailsById(userid);
+	int size = borrowedAssets.size();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +144,36 @@ footer {
 
 </style>
 
+
+<script type = "text/javascript">
+         <!--
+            function getConfirmation() {
+               var retVal = confirm("Do you want to return ?");
+               if( retVal == true ) {
+                  window.location.href="returnTrans.jsp";
+                  return true;
+               } else {
+                  return false;
+               }
+            }
+         //-->
+      </script>  
+</head>
+
 <body>
+
+<%
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+response.setHeader("Pragma","no-cache");
+response.setHeader("Expires","0");
+   if(session.getAttribute("userid")==null){
+	   response.sendRedirect("index.jsp");
+   }
+
+%>
+
+
+
 
 	<div class="header">
   		<a href="#default" class="logo"></a>
@@ -143,6 +199,8 @@ footer {
    <img src="images/userlogo.PNG" alt="USER" style="margin-left: 250px; width:30%;">
   </div>
   <br><br><br><br><br>
+  
+
 	
 	
 	
@@ -181,10 +239,7 @@ footer {
 	<br><br><br><br><br>
     <h2 style="text-shadow: 4px 4px 2px #A0A0A0" align="center">Return items</h2><br><br><br>
    	<p align="center">
-    <!--<a href="" onclick="window.open('userLogin.html', 'Return', 'width=2000,height=2000')">return</a>-->
-    <!-- <form method = "get" action = "userReturn.jsp">
-         <input type = "button" value = "Return" onclick = "getConfirmation();" align="center">
-     </form>  -->
+    
      
      <table border="2" style="height: 100%;">
 		<tr>
@@ -198,39 +253,39 @@ footer {
 			<th style="font-size:20px;">Pay Fine</th>
 		</tr>
 		
+		<%
+		for(int i=0 ;i <size; i++)
+		{%>
+		<tr>
+			<td><%= borrowedAssets.get(i).getTransactionId() %></td>
+			<td><%= borrowedAssets.get(i).getUser() %></td>
+			<td><%= borrowedAssets.get(i).getAsset() %></td>
+			<td><%= borrowedAssets.get(i).getDateOfBorrow().toString() %></td>
+			<td><%= borrowedAssets.get(i).getDateOfReturn().toString() %></td>
+			<td><%= borrowedAssets.get(i).isReturned() %></td>
+			<td><a href = "returnasset?assetid=<%=borrowedAssets.get(i).getAsset() %>&transactionid=<%=borrowedAssets.get(i).getTransactionId() %>">Return</a></td>
+      <td><input type = "button" value = "Pay" onclick = "getConfirmation();" align="center"></td>
+		</tr>		
+	<% 	}
+		%>
 		
 		
-		<%-- <c:forEach items="${assets}" var="con">
-			<tr>
-				<td>${con.transactionId}</td>
-				<td>${con.userId}</td>
-				<td>${con.assetId}</td>
-				<td>${con.issueDate}</td>
-				<td>${con.dueDate}</td>
-				<td>${con.borrowStatus}</td>
-				<td><a href = "ReturnAssetServlet?userid=${con.userId}">Delete</a></td>
-			</tr> 
-		</c:forEach>--%>
-	</table>
+		
+			</table>
   </p>
 </div>
     
     
     
 	
-	<!--  <foo> 
-          <div class="col">
-            <p style="margin-top:400px;">
-            </p>
-          </div>
-         </foo>-->
+	
 	
 	<footer>
        <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
             
-            <p style="font-weight:bold; font-color:red;"    class="copyright-text">Copyright &copy; 2020 All Rights Reserved by assets@yourservice pvt. ltd.
+            <p style="font-weight:bold; font-color:red;"    class="copyright-text">Copyright &copy; 2021 All Rights Reserved by Assets@yourservice pvt. ltd.
            
             </p>
           </div>

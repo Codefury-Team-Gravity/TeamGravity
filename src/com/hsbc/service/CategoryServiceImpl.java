@@ -1,5 +1,7 @@
 package com.hsbc.service;
 
+import java.util.List;
+
 import com.hsbc.dao.CategoryDao;
 import com.hsbc.dao.CategoryDaoFactory;
 import com.hsbc.dao.LoginDao;
@@ -20,6 +22,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category getCategoryByName(String assetType) {
 		// TODO Auto-generated method stub
 		return categoryDao.getCategoryByName(assetType);
+	}
+	public List<String> getAllCategory(){
+		return categoryDao.getAllCategory();
 	}
 	
 

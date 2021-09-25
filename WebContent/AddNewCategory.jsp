@@ -1,45 +1,13 @@
-<%@ page language="java"  contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.Date"%>
-<%@page import="com.hsbc.pojo.User"%>
-<%@page import="java.util.*"%>
-<%@page import="com.hsbc.service.*"%>
-
 <!DOCTYPE html>
 <html>
-<%
-response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
-response.setHeader("Pragma","no-cache");
-response.setHeader("Expires","0");
-   if(session.getAttribute("userid")==null){
-	   response.sendRedirect("index.jsp");
-   }
-
-%>
-
-<%
-  	User user = (User)session.getAttribute("currentUser");
-  	String name = user.getName();
-  	String email = user.getEmail();
-  	
-  %>
-
-
-
-<%
-
-	List<String> listOfAssets = new ArrayList<String>();
-//System.out.println("size of array list after creating: " + size);
-CategoryService cs = CategoryServiceFactory.getCategoryServiceImplObject();
-listOfAssets = cs.(); ///////////////
-int size = listOfAssets.size();
-%>
 <head>
 	<title>Add New Category</title>
 <style>
 body{
-background-color:black;
-background-image:url("adminbg10.jpg");
+background-color:white;
+background-image:url("adminbg10.jpeg");
 background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -52,38 +20,42 @@ background-position: center;
 height:300px;
 margin-top:50px;
 }
-.addcatgry
+.addcategry
 {
-	font-size:20px;
-	margin:left:200px;	
-	<!--margin-top:200px;-->
-
-	
+	color:black;
+	font-size:40px;
+	margin-top:150px;
+	border:2px solid black;
+	margin-left:700px;
+	padding:20px;
+	width:500px;
 }
 td {
 padding-left: 20px; 
 padding-top: 5px;
 padding-bottom: 5px;
 padding-right: 40px;
-color:white;
+color:black;
+font-size:25px;
 }
 
 .addassetbutn{
-border:2px solid #C0C0C0;
+border:5px solid #C0C0C0;
 font-weight: bold; 
-font-size:18px;
-color:white;
+font-size:20px;
+color:black;
 width:40px;
-margin-left:615px;
+margin-left:925px;
 
 }
 </style>
 </head>
 <body>
-<form method = "post" action="addcategory" align=center class="addcategry">
-<div style="color:white;font-size:25px;margin-top:150px;"><b>ADD CATEGORY</b></div><br>
-	<table class="ctrtable">
-	
+<form method = "post" action="addcategory" align=center>
+<div class="addcategry"><b>ADD CATEGORY</b></div><br>
+		
+		<table class="ctrtable">
+	        
 		<tr>
 			<td><b>Category</b></td>
 			<td><input type=text name="categoryname" id="categoryname" required></td>

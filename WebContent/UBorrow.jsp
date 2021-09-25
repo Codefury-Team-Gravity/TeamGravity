@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import="java.util.List,java.util.List,java.io.*,java.util.*,
+	com.hsbc.*, com.hsbc.pojo.*"%>
+
+<%@ page import="com.hsbc.pojo.User" %>
+<%
+	
+	User curruser=(User)session.getAttribute("currentUser");	
+	String username=(String)curruser.getUserName();
+	String empid=curruser.getUserId()+"";
+	String name=(String)curruser.getName();
+	String email=(String) curruser.getEmail();
+	String telephone=(String)curruser.getPhoneNumber();
+
+%>  
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +71,7 @@
 td {
 
 padding-left: 80px; 
-padding-bottom: -10px;
+padding-bottom: 13px;
 padding-right: 60px;
 }
 
@@ -95,13 +110,6 @@ padding-right: 60px;
   color: white;
 }
 
-
-
-
-
-
-
-
 footer {
   background-color:black;
   text-align: center;
@@ -113,12 +121,20 @@ footer {
   position: fixed;
 }
 
-
-
-
 </style>
 
 <body>
+
+<%
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+response.setHeader("Pragma","no-cache");
+response.setHeader("Expires","0");
+   if(session.getAttribute("userid")==null){
+	   response.sendRedirect("index.jsp");
+   }
+
+%>
+
 
 	<div class="header">
   		<a href="#default" class="logo"></a>
@@ -151,44 +167,44 @@ footer {
 	
 	<table class="left" align="left">
     <tr>
-  		<td><ul><li style="font-size:30px;font-family:fantasy;color:yellow;">USER NAME</li></ul></td>
+  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">USER NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%-- =username--%></td>
   	</tr>
   	<tr>
-  		<td><ul><li style="font-size:30px; font-family:fantasy;color:yellow;">EMPLOYEE ID</li></ul></td>
+  		<td><ul><li style="font-size:20px; font-family:fantasy;color:black;">EMPLOYEE ID</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%-- =empid--%></td>
   	</tr>
   	<tr>
-  		<td><ul><li style="font-size:30px; font-family:fantasy;color:yellow;">NAME</li></ul></td>
+  		<td><ul><li style="font-size:20px; font-family:fantasy;color:black;">NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%-- =name--%></td>
   	</tr>
   	<tr>
-  		<td><ul><li style="font-size:30px;font-family:fantasy;color:yellow;">TELEPHONE</li></ul></td>
+  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">TELEPHONE</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%-- =telephone--%></td>
   	</tr>
  	<tr>
-  		<td><ul><li style="font-size:30px;font-family:fantasy;color:yellow;">E-MAIL</li></ul></td>
+  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">E-MAIL</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td></td>
+  		<td><%-- =email--%></td>
   	</tr>         
     </table>
     
     
     <div class="split right">
   <br><br><br><br><br>
-    <h2 style="text-shadow: 4px 4px 2px #A0A0A0" align="center">Assets Available</h2><br>
-    <p align="center">You can choose from the variety of assests available <br>exclusively for your comfort at a single click..</p><hr><br>
+    <h2 style="text-shadow: 4px 4px 2px #A0A0A0" align="center">Available Assets </h2><br>
+    <p align="center">You can choose from the variety of assets available <br>exclusively for your comfort at a single click..</p><hr><br>
 <%
 // AssetDao dao=new AssetDao();
-//	int userid = (Integer)session.getAttribute("userid");
+int userid = (Integer)session.getAttribute("userid");
 // ArrayList<Asset> assetList= (ArrayList<Asset>)dao.getLendableAssets(userid);
-//	ArrayList<AssetK> assetList= (ArrayList<AssetK>) session.getAttribute("assetsAvailable");
-//	pageContext.setAttribute("asset",assetList);
-//	System.out.println(assetList); // Debugging purpose
+List<Asset> assetList= (List<Asset>) session.getAttribute("asset");
+pageContext.setAttribute("asset",assetList);
+System.out.println(assetList); // Debugging purpose
 %>
 <table border=5>
 		<tr>
@@ -210,37 +226,23 @@ footer {
 				<td>${a.isAvailable}</td>
 				<td>
 					<form method="get" action="borrowAssetServlet">
-				<!-- 	<input type="checkbox" name="assetIdToBorrow" value="${a.assetId}">   -->
+				 	<input type="checkbox" name="assetIdToBorrow" value="${a.assetId}">   
 					<input type="submit" value="Borrow">
 					</form>	
 				</td>
-				<!--<td><a href="borrowAssetServlet?borrowing=yes&assetIdToBorrow=${a.assetId}">Borrow</a></td>  -->	 
+				<td><a href="borrowAssetServlet?borrowing=yes&assetIdToBorrow=${a.assetId}">Borrow</a></td>  
 		</tr>
 		</c:forEach>
 		</table>
 		<hr>
 </div>
-    
-    
-    
-    
-    
-    
-    
-	
-	<!--  <foo> 
-          <div class="col">
-            <p style="margin-top:400px;">
-            </p>
-          </div>
-         </foo>-->
 	
 	<footer>
        <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
             
-            <p style="font-weight:bold; font-color:red;"    class="copyright-text">Copyright &copy; 2020 All Rights Reserved by assets@yourservice pvt. ltd.
+            <p style="font-weight:bold; font-color:red;"    class="copyright-text">Copyright &copy; 2021 All Rights Reserved by assets@yourservice pvt. ltd.
            
             </p>
           </div>

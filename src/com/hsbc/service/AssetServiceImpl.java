@@ -38,6 +38,7 @@ public class AssetServiceImpl implements AssetService {
 		return assetDao.isAvailable(assetId);
 	}
 	public List<Asset> getAllAvailableAsset(){
+		System.out.println("Entered service");
 		return assetDao.getAllAvailableAsset();
 	}
 	

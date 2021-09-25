@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
+
 <%@page import="com.hsbc.pojo.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hsbc.pojo.User"%>
@@ -11,8 +12,11 @@
 	String username=(String)curruser.getName();
 	String email=(String) curruser.getEmail();
 %>
+
 <!DOCTYPE html>
 <html>
+
+
 <head>
 <title>Messages</title>
 <meta charset="ISO-8859-1">
@@ -78,6 +82,7 @@ footer {
 	bottom: 0;
 	position: fixed;
 }
+
 .split {
 margin-top:5px;
   margin-left:20px;
@@ -112,8 +117,8 @@ margin-top:5px;
 
 .right::after {
 	content: "";
-	background-image: url("images/cate.jpg");
-	background-size: 100% 100%;
+	
+	background-size: 70% 70%;
 	background-position: center;
 	background-repeat: no-repeat;
 	opacity: 0.20;
@@ -152,7 +157,6 @@ td {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-right: 60px;
-	color: black;
 }
 
 ol {
@@ -163,8 +167,6 @@ ol {
 
 
 </style>
-
-
 </head>
 <body>
 
@@ -177,7 +179,6 @@ response.setHeader("Expires","0");
    }
 
 %>
-
 
 
 
@@ -228,19 +229,16 @@ response.setHeader("Expires","0");
 	</div>
 	<div class="split right">
 		<br> <br> <br> <br> <br>
+		<h1 style="font-family:monospace;font-size:30px;" align="center">PLEASE SEARCH BY USERNAME!</h1>
+
+		<form method="post" action="byId" align="center">
 
 
-
-		<h1 style="font-family:monospace;font-size:30px;" align="center">PLEASE SEARCH BY CATEGORY!</h1>
-
-		<form method="post" action="bycategory" align="center">
-
-
-			<table align="center">
+			<table>
 				<tr>
-					<td style="font-size:20px;">Enter Category:<input type="text" name="category"></td>
-					
-					
+					<td style="margin-left:-80px;">Enter Id:</td>
+					<td>:</td>
+					<th><input type="text" name="userid"></th>
 				</tr>
 				<br>
 				<br>
@@ -250,70 +248,58 @@ response.setHeader("Expires","0");
 		</form>
 		<br> <br>
 		
+		
 		<%
-			ArrayList<Borrow> list3 = (ArrayList<Borrow>) session.getAttribute("list");
-		pageContext.setAttribute("list3", list3);
-		System.out.println("from jsp " + list3);
+			ArrayList<Borrow> list2 = (ArrayList<Borrow>) session.getAttribute("list");
+		pageContext.setAttribute("list2", list2);
+		System.out.println("from jsp " + list2);
 		%>
 		
 		
 		
+		
 		<table border=5 align="center">
-			<c:forEach items="${list3}" var="obj3">
+			<c:forEach items="${list2}" var="obj2">
 				<tr>
 					<td>User Name</td>
-					<th>${obj3.username }</th>
+					<th>${obj2.username }</th>
 				</tr>
 				<tr>
 					<td>Name</td>
-					<th>${obj3.name }</th>
+					<th>${obj2.name }</th>
 				</tr>
 				<tr>
 					<td>Phone Number</td>
-					<th>${obj3.phone }</th>
+					<th>${obj2.phone }</th>
 				</tr>
 				<tr>
 					<td>Email Id</td>
-					<th>${obj3.email }</th>
+					<th>${obj2.email }</th>
 				</tr>
-				
+				<tr>
+					<td>Last Login Date</td>
+					<th>${obj2.lastLogin }</th>
+				</tr>
 				<tr>
 					<td>Asset Id</td>
-					<th>${obj3.assetId }</th>
-				</tr>
-				<tr>
-					<td>Category</td>
-					<th>${obj3.category }</th>
-				</tr>
-				<tr>
-					<td>Subcategory</td>
-					<th>${obj3.subcategory }</th>
-				</tr>
-				<tr>
-					<td>Feature Description</td>
-					<th>${obj3.featureDescription }</th>
-				</tr>
-				<tr>
-					<td>Date Added</td>
-					<th>${obj3.dateAdded}</th>
+					<th>${obj2.assetId }</th>
 				</tr>
 				<tr>
 					<td>Issue Date</td>
-					<th>${obj3.issueDate }</th>
+					<th>${obj2.issueDate }</th>
 				</tr>
 				<tr>
-					<td>Due Date</td>
-					<th>${obj3.dueDate }</th>
+					<td>due Date</td>
+					<th>${obj2.dueDate }</th>
 				</tr>
 				<tr>
 					<td>Return Date</td>
-					<th>${obj3.returnDate }</th>
+					<th>${obj2.returnDate }</th>
 				</tr>
 				<tr>
-					<td>Ban Start Dte</td>
-					<th>${obj3.banStartDate }</th>
+					<td>Ban Start Date</td>
+					<th>${obj2.banStartDate }</th>
 				</tr>
-
 			</c:forEach>
 		</table>
 		
@@ -323,14 +309,14 @@ response.setHeader("Expires","0");
 				onclick="location.href = 'AdminHome.jsp';" />
 		</form>
 		<footer>
-       <div class="container">
+			<p>
+			<div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
-            
-            <p style="font-weight:bold; font-color:red; margin-top:20px;margin-left:150px;"    class="copyright-text">Copyright &copy; 2020 All Rights Reserved by assets@yourservice pvt. ltd.
-           
+            <p style="font-weight:bold; font-color:red; margin-top:20px;margin-left:150px;" class="copyright-text">Copyright &copy; 2021 All Rights Reserved by Assets @ your Service.
             </p>
           </div>
-	</footer>
+		</footer>
+
 </body>
 </html>

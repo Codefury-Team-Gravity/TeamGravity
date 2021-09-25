@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int addUser(User u, Credential c) throws UserAlreadyPresentException {
 		// TODO Auto-generated method stub
+		//System.out.println(c.getUserName());
 		return userdao.addUser(u, c);
 		
 		

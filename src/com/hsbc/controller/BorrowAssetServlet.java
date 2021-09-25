@@ -18,7 +18,10 @@ import javax.servlet.http.HttpSession;
 import com.hsbc.pojo.*;
 //import com.hsbc.dao.AuthenticationDao;
 import com.hsbc.dao.BorrowDao;
-
+import com.hsbc.exceptions.AssetNotFoundException;
+import com.hsbc.exceptions.AssetNotInStockException;
+import com.hsbc.exceptions.DidNotBorrowAssetException;
+import com.hsbc.exceptions.NoUserFoundException;
 import com.hsbc.pojo.Asset;
 
 //import com.hsbc.pojo.Authentication;
@@ -45,30 +48,43 @@ public class BorrowAssetServlet extends HttpServlet {
 		// Above lines confirmed user's login, Now fetch his username
 		int userId = (int) session.getAttribute("userid");
 		System.out.println("Got user id");
+		
 
 		//AuthenticationDao authDao = new AuthenticationDao();
 		BorrowService borrowservice = BorrowServiceFactory.getBorrowServiceImplObject();
 		//OverdueDao overdueDao = new OverdueDao();
 		AssetService assetservice = AssetServiceFactory.getAssetServiceObject();
+		System.out.println(assetservice);
+		List<Asset> assetsAvailable = assetservice.getAllAvailableAsset();//get all assets borrowed by user
+		//use isAvailable
+
+		System.out.println("Printing Assets for debugging (Not when request comes from borrowAssets.jsp");
+		System.out.println(assetsAvailable);
 
 		// Check if user is defaulter
 		//!!!!!!!!!!!!!CHECK ABT OVERDUE DAO!!!!!!!!!!!!!!!!!!
-		boolean dontLend = borrowservice.isEligibleToBorrow(userId);
+		boolean dontLend=false;
+		try {
+			dontLend = borrowservice.isEligibleToBorrow(userId);
+		} catch (DidNotBorrowAssetException | NoUserFoundException | AssetNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (dontLend) {
 			session.setAttribute("isBanFinished", "false");
 		}
 		System.out.println("isBanFinished is set to false if user has pending");
 
 		// Get List of assets to display (Excludes Categories he has already lended)
-		List<Asset> assetsAvailable = assetservice.getAllAvailableAsset();//get all assets borrowed by user
+		//List<Asset> assetsAvailable = assetservice.getAllAvailableAsset();//get all assets borrowed by user
 		//use isAvailable
 
-		System.out.println("Printing Assets for debugging (Not when request comes from borrowAssets.jsp");
-		System.out.println(assetsAvailable);
+		//System.out.println("Printing Assets for debugging (Not when request comes from borrowAssets.jsp");
+		//System.out.println(assetsAvailable);
 		System.out.println("Printing Assets for debugging (Not when request comes from borrowAssets.jsp");
 
 		// USE THIS ATTRIBUTE IN FRONTEND TO SHOW LIST OF AVAILABLE PRODUCTS TO BORROW
-		session.setAttribute("assetsAvailable", assetsAvailable); // These Assets will be displayed to User
+		session.setAttribute("asset", assetsAvailable); // These Assets will be displayed to User
 
 		// Redirect when request is not coming from borrowAssets.jsp
 		if (assetIdToBorrow == null) {
@@ -78,14 +94,16 @@ public class BorrowAssetServlet extends HttpServlet {
 
 		System.out.println("User wants to lend :" + assetIdToBorrow);
 
-		int assetId = Integer.parseInt(assetIdToBorrow);
+		int assetId = Integer.parseInt(assetIdToBorrow);/////////////////////
 
 		// Update Borrow Table
 		//!!!!!!Where is the borrow table being updated in borrowdao!!!!!!////////////////////////////////////////////////////////////////////////////////
 		boolean borrowTableUpdateStatus = false;
 		try {
-			borrowTableUpdateStatus = borrowservice.addtransaction(new Borrow(userId, assetId));
-		} catch (ParseException | SQLException e) {
+			User us=new User(userId);
+			Asset as=new Asset(assetId);
+			borrowTableUpdateStatus = borrowservice.addtransaction(new Borrow(us, as));
+		} catch (AssetNotFoundException | AssetNotInStockException | DidNotBorrowAssetException | NoUserFoundException e) {
 			e.printStackTrace();
 		}
 

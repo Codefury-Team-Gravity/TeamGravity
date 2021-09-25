@@ -25,9 +25,9 @@ public class Registerservlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		String name = req.getParameter("name");
 		String role = req.getParameter("role");
-		String phoneNumber = req.getParameter("phoneNumber");
+		String phoneNumber = req.getParameter("telephone");
 		String email = req.getParameter("email");
-		String userName = req.getParameter("userName");
+		String userName = req.getParameter("username");
 		String password = req.getParameter("password");
 		String confpassword = req.getParameter("conpass");
 		
@@ -37,20 +37,21 @@ public class Registerservlet extends HttpServlet {
 			User bean = new User(name, role, phoneNumber, email, userName);
 			int check=0;
 			try {
+				System.out.println(credit.getUserName());
 				check = UserServiceFactory.getUserServiceObject().addUser(bean, credit);
 			} catch (UserAlreadyPresentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			//Check if the registration is happening successfully(pending)
-			if (check == 1) {
-				resp.sendRedirect("UnameEmail.jsp");
-			} else if (check == 2) {
-				resp.sendRedirect("Username.jsp");
-			} else if (check == 3) {
+			//if (check == 1) {
+				//resp.sendRedirect("UnameEmail.jsp");
+			if (check == 2) {
 				resp.sendRedirect("Email.jsp");
-			} else if (check == 0) {
-				resp.sendRedirect("Success.jsp");
+			} else if (check == 3) {
+				resp.sendRedirect("Username.jsp");
+			} else if (check == 1) {
+				resp.sendRedirect("success1.jsp");
 			}
 		} else {
 			resp.sendRedirect("Password.jsp");

@@ -1,22 +1,32 @@
-<%@page import="com.hsbc.pojo.User"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!--a set of assets/WebContent/WEB-INF/UserHomepage.html-->
+<%--@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"--%>
+	
+<%--@page import="com.hsbc.pojo.User"--%>
 
-<%
+<%--
    
 	User curruser=(User)session.getAttribute("currentUser");	
 	String username=(String)curruser.getName();
 	String email=(String) curruser.getEmail();
-%>
+--%>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Home</title>
+	<title>Report</title>
 <style>
-
+footer {
+  background-color: black;
+  text-align: center;
+  color: white;
+  z-index: 22;
+  left: 0;
+  width: 100%;
+  height: 7%;
+  bottom: 0;
+  position: fixed;
+}
 
 .header {
   overflow: hidden;
@@ -61,31 +71,13 @@
   float: right;
 }
 
-
-
-footer {
-  background-color: black;
-  text-align: center;
-  color: white;
-  z-index: 22;
-  left: 0;
-  width: 100%;
-  height: 7%;
-  bottom: 0;
-  position: fixed;
-}
-
-
-	/* Split the screen in half */
+/* Split the screen in half */
 body {
   margin: 0;
   font-family: ALEGREYA, Helvetica, sans-serif;
 }
 .split {
-margin-top:5px;
-  margin-left:20px;
-  margin-right:20px;
-  height: 80%;
+  height: 100%;
   width: 50%;
   position: fixed;
   z-index: 2;
@@ -99,23 +91,23 @@ margin-top:5px;
 /* Control the left side */
 .left {
   
-  background-image: url("images/Laptop.gif");
+  background-image: url("images/12.gif");
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-size: 50% 100%;
-  
   color:yellow;
   position: fixed;
 }
 
 .lefttable{
-	margin-top:40px;
+	
 	margin-left:95px;
-	margin-bottom:20px;
+	
 	margin-right:40px;
-	position:left;
+	position:center-left;
 	table-layout: justify;
 	color:#0F0E0E;
+	font-size:22px;
 
 
 }
@@ -136,11 +128,11 @@ padding-right: 60px;
 
 .right::after {
   content: "";
-  background-image: url("images/new1.jpg");
-  background-size: 100% 90%;
+  background-image: url("images/13.jpg");
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.50;
+  opacity: 0.25;
   top: 0;
   left: 0;
   bottom: 0;
@@ -163,13 +155,14 @@ padding-right: 60px;
   width: 150px;
   border-radius: 70%;
 }
-
-
+  
 </style>
+
+
 </head>
 <body>
 
-<%
+<%--
 response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 response.setHeader("Pragma","no-cache");
 response.setHeader("Expires","0");
@@ -177,17 +170,16 @@ response.setHeader("Expires","0");
 	   response.sendRedirect("index.jsp");
    }
 
-%>
+--%>
 
 
-
-<div class="header">
+	<div class="header">
   		<a href="#default" class="logo"></a>
   		<div class="header-right">
     		<a class="active">Admin</a>
     		<a  href="AddAsset.jsp" >Add Assets</a>
-    		<a  href="overduetrans.jsp">Over-due Assets</a>
-    		<a href="ImportUsers.jsp">Import Users</a>
+    		<a  href="overdueAssets.jsp">Over-due Assets</a>
+    		<a href="#">Import Users</a>
     		<a href="ViewReport.jsp">View Reports</a>
     		<a href="index.jsp">Logout</a>
   		</div>
@@ -199,62 +191,91 @@ response.setHeader("Expires","0");
 		<h1 style="color:white; font-size:40px;font-family:'ALEGREYA',sans-serif;
 			margin-left:110px;margin-top:-80px;">asset@yourservice</h1>
 	</div>
+	<div class="split left">
+		<div class="centered">
+			<img src="images/user.jpg" alt="USER" style="left: 60%; width:100px; height:100px; margin-top:30px">
+		</div>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br>
+		<div class="left" align="left">
+			<table class="lefttable">
 
-<div class="split left">
-  <div class="centered">
-    <img src="images/user.jpg" alt="USER" style="left: 60%; width:100px; height:100px; margin-left:-50px;margin-top:70px";">
-  </div>
-  <br><br><br><br><br>
-  <div class="left" align="left">
-  <table class="lefttable" style="font-size:28px;width:25%;">
- 
-  	<tr>
-  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">NAME</li></ul></td>
+				<tr>
+					<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%=username%></td>
-  	</tr>
-  	
- 	<tr>
-  		<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">EMAIL</li></ul></td>
+  		<td><%-- =username--%></td>
+				</tr>
+
+				<tr>
+					<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">EMAIL</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%=email%></td>
-  	</tr>
-    </table>
+  		<td><%-- =username--%></td>
+				</tr>
+
+			</table>
+		</div>
 	</div>
-</div>
+	<div class="split right">
+		<br> <br> <br> <br> <br>
+		<h1 align="center" style="color:black; font-family:monospace; font-size:36" >GRAPH OF QUANTITY VS ITEM</h1>
+		
+			
+			<div id="chartContainer" style="height: 300px; width: 100%; margin: 0 auto;">
+			
+			<script>
+ function picture() {
+
+document.getElementById('chartContainer').style.display='block';
+document.getElementById('bttn').style.display='none';
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Number of items borrowed:"
+	},
+	data: [{        
+		type: "line",
+      	indexLabelFontSize: 16,
+		dataPoints: [
+			{ y: 41, indexLabel: "\u2191 DSLR",markerColor: "green", markerType: "circle" },
+			{ y: 29, indexLabel: "\u2193 TV",markerColor: "green", markerType: "circle"},
+			{ y: 52, indexLabel: "\u2191 Books",markerColor: "red", markerType: "triangle" },
+			{ y: 23, indexLabel: "\u2193 Gaming console",markerColor: "green", markerType: "circle" },
+			{ y: 45, indexLabel: "\u2191 Smart gadgets",markerColor: "green", markerType: "circle" },
+			{ y: 19, indexLabel: "\u2191 Mobile phones",markerColor: "green", markerType: "circle" },
+			{ y: 13, indexLabel: "\u2191 Laptos",markerColor: "green", markerType: "circle" },
+			{ y: 7 , indexLabel: "\u2193 Headphones",markerColor: "black", markerType: "cross" },
+		],
+	}]
+
+	
+});
 
 
-<div class="split right">
-  <br><br><br><br><br>
-    <h2 align="center" style="color:#000000; font-family:monospace;  font-size:40px; margin-top:-20px;">WELCOME ADMIN</h2><br><br><br>
-    <p align="center">
-    <article style="margin-top: 5px; margin-left: 245px;">
-                        <div  class="slideshow-container">
-                    
-                            <div class="mySlides fade">
-                              <!-- <div class="numbertext">1 / 3</div> -->
-                              <img src="images/m1.jpg" style="width:60%; margin-left: 50px; height:28%;">
-                              <!-- <div class="text">Caption Text</div> -->
-                            </div>
-                       
-                            </div>
-                            <br> 
-                    </article>
-                    </p><br><br>
-                    <p style="color: black; font-size:20px;margin-left: 50px;margin-top:20px;" align="center">Making good, BETTER!</p>
-					
-</div>
+chart.render();
 
-<footer>
+
+
+}
+	
+</script>
+			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<br><br><br><br><br><br><br><button onclick="picture()" id="bttn" style="display:block; margin: 0 auto; width:50%; height:20%; background-color:yellow; color:black; border-radius:8px"><b>Click here to view number of assets which have been bought....</b></button>
+
+				
+			
+			</div>
+		
+
+		<footer>
        <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
             
-            <p style="font-weight:bold; font-color:red; margin-top:20px;"    class="copyright-text">Copyright &copy; 2021 All Rights Reserved by assets@yourservice pvt. ltd.
+            <p style="font-weight:bold; font-color:red; margin-top:20px;"    class="copyright-text">Copyright &copy; 2020 All Rights Reserved by assets@yourservice pvt. ltd.
            
             </p>
           </div>
 	</footer>
-
 </body>
 </html>
