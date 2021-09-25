@@ -13,7 +13,7 @@ public class DBUtil {
 			if(conn==null) {
 				String url="jdbc:mysql://localhost:3306/eAsset";
 				String username="root";
-				String password="Shawn8898*";
+				String password="divanshu";
 				DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 				conn=DriverManager.getConnection(url,username,password);
 				conn.setAutoCommit(true);

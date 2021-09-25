@@ -195,7 +195,7 @@ response.setHeader("Expires","0");
   		<div class="header-right">
     		<a >Admin</a>
     		<a  href="AddAsset.jsp" >Add Assets</a>
-    		<a class="active" href="overdueAssets.jsp">Over-due Assets</a>
+    		<a class="active" href="overduetrans.jsp">Over-due Assets</a>
     		<a  href="ImportUsers.jsp">Import Users</a>
     		<a href="ViewReport.jsp">View Reports</a>
     		<a href="index.jsp">Logout</a>
@@ -240,7 +240,7 @@ response.setHeader("Expires","0");
 	
 		
 		<br><br><b><input type="button" value="CLICK HERE TO VIEW DETAILS BY ID"
-				onclick="location.href = 'searchbyId.jsp';" style="font-size:20px;color:white;background-color:green; width:50%; border-radius: 12px; height:60px;" /></b>
+				onclick="location.href = 'searchById.jsp';" style="font-size:20px;color:white;background-color:green; width:50%; border-radius: 12px; height:60px;" /></b>
 				
 		
 		<br><br><b><input type="button" value="CLICK HERE TO VIEW DETAILS BY CATEGORY"

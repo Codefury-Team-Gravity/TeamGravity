@@ -100,7 +100,7 @@ margin-top:5px;
 /* Control the left side */
 .left {
   
-  background-image: url("/portal_content/images/Laptop.gif");
+  background-image: url("images/Laptop.gif");
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-size: 50% 100%;
@@ -207,7 +207,7 @@ response.setHeader("Expires","0");
 	</div>
 	
 	<div class="logo">
-		<a href="#"><img src="../../images/log.jpg" style="width:6%;margin-left:-5px;
+		<a href="#"><img src="images/log.jpg" style="width:6%;margin-left:-5px;
 		margin-top:-205px;margin-bottom:15px;height:84px;  "/></a>
 		<h1 style="color:white; font-size:40px;font-family:'ALEGREYA',sans-serif;
 			margin-left:110px;margin-top:-80px;">asset@yourservice</h1>
@@ -255,7 +255,7 @@ response.setHeader("Expires","0");
 <form method = "post" action = "addasset">
 					<table class="righttable">
 					<tr>
-					<td><b>Category</b></td>
+					<td style = "font-size:20px;"><b>Category</b></td>
 					
 					<td><select name="category" id="newcategory">
 								<option>Category</option>
@@ -276,7 +276,7 @@ response.setHeader("Expires","0");
 					
 
 					<tr>
-						<td style="width: 20px; font-size: 18px;"><b>Sub-Category<b></td>
+						<td style="width: 20px; font-size: 18px;"><b>Asset Name<b></td>
 						<td><input type="text" name="subcategory" required
 							style="height: 30px; width: 200px;"></td>
 					</tr>

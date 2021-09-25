@@ -98,7 +98,7 @@
 	
 	
 	<div class="logo">
-		<a href="#"><img src="portal_content/images/log.jpg" style="width:11%;margin-left:-5px;
+		<a href="#"><img src="images/log.jpg" style="width:11%;margin-left:-5px;
 		margin-top:-205px;margin-bottom:15px;height:164px;  "/></a>
 		<h1 style="color:white; font-size:50px;font-family:'ALEGREYA',sans-serif;
 			margin-left:210px;margin-top:-130px;">asset@yourservice</h1>

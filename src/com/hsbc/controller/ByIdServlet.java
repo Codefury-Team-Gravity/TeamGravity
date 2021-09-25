@@ -1,6 +1,7 @@
 package com.hsbc.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class ByIdServlet extends HttpServlet {
 		resp.setContentType("text/html");
 
 		HttpSession session = req.getSession();
-		int UserId = Integer.parseInt(req.getParameter("userId"));
-
+		int UserId = Integer.parseInt(req.getParameter("userid"));
+		System.out.println(UserId);
 		BorrowService bs=BorrowServiceFactory.getBorrowServiceImplObject();
 		
 
@@ -39,13 +40,16 @@ public class ByIdServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("searchById.jsp");//!!!!!!!!!!!!!!!
 			rd.forward(req, resp);
 		} catch (DidNotBorrowAssetException e) {
-			// TODO Auto-generated catch block
+			PrintWriter j = resp.getWriter();
+			j.write("<html><body><h1>Did not borrow asset</h1></body></html>");
 			e.printStackTrace();
 		} catch (NoUserFoundException e) {
-			// TODO Auto-generated catch block
+			PrintWriter j = resp.getWriter();
+			j.write("<html><body><h1>No user found with ID ="+UserId+"</h1></body></html>");
 			e.printStackTrace();
 		} catch (AssetNotFoundException e) {
-			// TODO Auto-generated catch block
+			PrintWriter j = resp.getWriter();
+			j.write("<html><body><h1>Asset not found</h1></body></html>");
 			e.printStackTrace();
 		}
 
