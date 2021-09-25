@@ -98,6 +98,7 @@ public class BorrowDaoImpl implements BorrowDao {
 			getUsersByCategory.setString(1, assetType);
 			ResultSet rs = getUsersByCategory.executeQuery();
 			while (rs.next()) {
+				
 				double lateFee = rs.getDouble(8);
 				Date borrowDate = rs.getDate(5);
 				Date returnDate = rs.getDate(7);
@@ -140,10 +141,11 @@ public class BorrowDaoImpl implements BorrowDao {
 			ResultSet rs = getUsersById.executeQuery();
 			while (rs.next()) {
 				//calculating overdue fee
+				System.out.println("In while");
 				Date borrowDate = rs.getDate(2);
 				Date returnDate = rs.getDate(7);
-				int lendingPeriod = r.getInt(4);
-				int bannedPeroid = r.getInt(5);
+				int lendingPeriod = r.getInt(1); 
+				int bannedPeroid = r.getInt(3);
 				double totalLateFee = calculateLateFee(lateFee, borrowDate, returnDate, lendingPeriod, bannedPeroid);
 				//fetch user details
 				UserDao ud = UserDaoFactory.getUserDoaObject();
@@ -164,6 +166,7 @@ public class BorrowDaoImpl implements BorrowDao {
 		if (b.size() == 0) {
 			throw new DidNotBorrowAssetException("User with id= " + userId + " didn't borrow any asset");
 		}
+		System.out.println("B size"+b.size());
 		return b;
 
 	}

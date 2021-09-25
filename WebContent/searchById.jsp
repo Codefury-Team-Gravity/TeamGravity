@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-
-<%@page import="com.hsbc.pojo.*"%>
+<%@ taglib prefix="c"       uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"     uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@page import="com.hsbc.pojo.Borrow"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hsbc.pojo.User"%>
 
@@ -229,16 +231,16 @@ response.setHeader("Expires","0");
 	</div>
 	<div class="split right">
 		<br> <br> <br> <br> <br>
-		<h1 style="font-family:monospace;font-size:30px;" align="center">PLEASE SEARCH BY USERNAME!</h1>
+		<h1 style="font-family:monospace;font-size:30px;" align="center">PLEASE SEARCH BY ID!</h1>
 
-		<form method="post" action="byId" align="center">
+		<form method="post" action="byname" align="center">
 
 
 			<table>
 				<tr>
-					<td style="margin-left:-80px;">Enter Id:</td>
+					<td style="margin-left:-80px;">Enter Username:</td>
 					<td>:</td>
-					<th><input type="text" name="userid"></th>
+					<th><input type="text" name="name"></th>
 				</tr>
 				<br>
 				<br>
@@ -252,7 +254,7 @@ response.setHeader("Expires","0");
 		<%
 			ArrayList<Borrow> list2 = (ArrayList<Borrow>) session.getAttribute("list");
 		pageContext.setAttribute("list2", list2);
-		System.out.println("from jsp " + list2);
+//		System.out.println("from jsp " + list2);
 		%>
 		
 		

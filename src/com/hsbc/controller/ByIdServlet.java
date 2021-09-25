@@ -35,21 +35,24 @@ public class ByIdServlet extends HttpServlet {
 
 		try {
 			List<Borrow> list = bs.getBorrowDetailsById(UserId);
-//			System.out.println("from servlet "+list);
+		System.out.println("from servlet "+list.get(0).getAsset().getAssetId()); 
 			session.setAttribute("list", list);
-			RequestDispatcher rd = req.getRequestDispatcher("searchById.jsp");//!!!!!!!!!!!!!!!
+			RequestDispatcher rd = req.getRequestDispatcher("searchById.jsp");;//!!!!!!!!!!!!!!!
 			rd.forward(req, resp);
 		} catch (DidNotBorrowAssetException e) {
 			PrintWriter j = resp.getWriter();
 			j.write("<html><body><h1>Did not borrow asset</h1></body></html>");
+			//rd.include(req, resp);
 			e.printStackTrace();
 		} catch (NoUserFoundException e) {
 			PrintWriter j = resp.getWriter();
 			j.write("<html><body><h1>No user found with ID ="+UserId+"</h1></body></html>");
+			//rd.include(req, resp);
 			e.printStackTrace();
 		} catch (AssetNotFoundException e) {
 			PrintWriter j = resp.getWriter();
 			j.write("<html><body><h1>Asset not found</h1></body></html>");
+			//rd.include(req, resp);
 			e.printStackTrace();
 		}
 
