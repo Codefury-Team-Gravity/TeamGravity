@@ -231,7 +231,7 @@ response.setHeader("Expires","0");
 				<tr>
 					<td>Enter Username</td>
 					<td>:</td>
-					<th><input type="text" name="uname"></th>
+					<th><input type="text" name="transactionId"></th>
 				</tr>
 				<tr>
 					<td>Enter Message</td>

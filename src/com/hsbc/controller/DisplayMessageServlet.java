@@ -21,7 +21,7 @@ public class DisplayMessageServlet extends HttpServlet {
 		resp.setContentType("text/html");
 
 		HttpSession session = req.getSession();
-		int uid = Integer.parseInt(req.getParameter("uid"));
+		int uid = Integer.parseInt(req.getParameter("id"));
 		
 
 		UserService usservice=UserServiceFactory.getUserServiceObject();
@@ -30,7 +30,7 @@ public class DisplayMessageServlet extends HttpServlet {
 			List<String> list = usservice.displayMessage(uid);
 			System.out.println("from servlet " + list);
 			session.setAttribute("list", list);
-			RequestDispatcher rd = req.getRequestDispatcher("DisplayMessage.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("displaymessage.jsp");
 			rd.forward(req, resp);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -140,7 +140,7 @@ response.setHeader("Expires","0");
     		<a  class="active">User</a>
     		<a  href="UBorrow.jsp">Borrow</a>
     		<a  href="UReturn.jsp">Return</a>
-    		<a href="#">Messages</a>
+    		<a href="displaymessage.jsp">Messages</a>
     		<a href="index.jsp">Logout</a>
   		</div>
 	</div>

@@ -1,14 +1,14 @@
-<%--@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"--%>
 	
-<%--@page import="com.hsbc.pojo.User"--%>
+<%@page import="com.hsbc.pojo.User"%>
 
-<%--
+<%
    
 	User curruser=(User)session.getAttribute("currentUser");	
 	String username=(String)curruser.getName();
 	String email=(String) curruser.getEmail();
---%>
+%>
 
 
 <!DOCTYPE html>
@@ -162,7 +162,7 @@ padding-right: 60px;
 </head>
 <body>
 
-<%--
+<%
 response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 response.setHeader("Pragma","no-cache");
 response.setHeader("Expires","0");
@@ -170,7 +170,7 @@ response.setHeader("Expires","0");
 	   response.sendRedirect("index.jsp");
    }
 
---%>
+%>
 
 
 	<div class="header">
@@ -178,7 +178,7 @@ response.setHeader("Expires","0");
   		<div class="header-right">
     		<a class="active">Admin</a>
     		<a  href="AddAsset.jsp" >Add Assets</a>
-    		<a  href="overdueAssets.jsp">Over-due Assets</a>
+    		<a  href="overduetrans.jsp">Over-due Assets</a>
     		<a href="#">Import Users</a>
     		<a href="ViewReport.jsp">View Reports</a>
     		<a href="index.jsp">Logout</a>
@@ -203,13 +203,13 @@ response.setHeader("Expires","0");
 				<tr>
 					<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">NAME</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%-- =username--%></td>
+  		<td><%=username%></td>
 				</tr>
 
 				<tr>
 					<td><ul><li style="font-size:20px;font-family:fantasy;color:black;">EMAIL</li></ul></td>
   		<td style="color:black;font-size:40px;">:</td>
-  		<td><%-- =username--%></td>
+  		<td><%=email%></td>
 				</tr>
 
 			</table>

@@ -1,6 +1,7 @@
 package com.hsbc.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,15 +40,20 @@ public class ByCategoryServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("searchByCategory.jsp");
 			rd.forward(req, resp);
 		} catch (NoUserFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (DidNotBorrowAssetException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (AssetNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
+		  catch (NullPointerException e) {
+			  PrintWriter j = resp.getWriter();
+			  j.write("<html><body><h1>No Asset Found</h1></body></html>");
+			  e.printStackTrace();
+		  }
 
 	}
 }

@@ -21,14 +21,13 @@ import com.hsbc.pojo.Borrow;
 import com.hsbc.service.BorrowService;
 import com.hsbc.service.BorrowServiceFactory;
 
-public class ByIdServlet extends HttpServlet {
-
+public class ByIdServlet extends HttpServlet { 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 
 		HttpSession session = req.getSession();
-		int UserId = Integer.parseInt(req.getParameter("userid"));
+		int UserId = Integer.parseInt(req.getParameter("name"));
 		System.out.println(UserId);
 		BorrowService bs=BorrowServiceFactory.getBorrowServiceImplObject();
 		
@@ -55,6 +54,11 @@ public class ByIdServlet extends HttpServlet {
 			//rd.include(req, resp);
 			e.printStackTrace();
 		}
+			catch (NullPointerException e) {
+			  PrintWriter j = resp.getWriter();
+			  j.write("<html><body><h1>No Overdue Found !!!</h1></body></html>");
+			  e.printStackTrace();
+		  }
 
 	}
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%--@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"--%>
 
     
     
@@ -191,7 +191,7 @@ response.setHeader("Expires","0");
 		<br>
 		<div class="centered1">
 			<form method="post" action="display" style="margin-top:50px;margin-left:250px;" >
-				Enter Username :    <input type="text" name="uname"> <br> <br>
+				Enter UserID :    <input type="text" name="id"> <br> <br>
 				Enter password :    <input type="password" name="password"> <br>
 				<br> <input type="submit" style="margin-top:50px;margin-left:100px;"
 				value="Show" onclick="f1();">

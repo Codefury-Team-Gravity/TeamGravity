@@ -37,7 +37,7 @@ public class SendMessageServlet extends HttpServlet {
 			bs.addmessage(message,transactionId);//Check the parameters. Given in the dao are Transaction id and message
 //			System.out.println("from servlet "+list);
 			session.setAttribute("message",message);
-			RequestDispatcher rd = req.getRequestDispatcher("sendMessage.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("Sendmessage.jsp");
 			rd.forward(req, resp);
 		} catch (TransactionNotFound e) {
 			e.printStackTrace();
